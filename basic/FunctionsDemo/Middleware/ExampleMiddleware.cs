@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker.Middleware;
 
 namespace FunctionsDemo.Middleware;

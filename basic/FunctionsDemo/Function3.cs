@@ -1,6 +1,7 @@
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace FunctionsDemo;
 
@@ -14,15 +15,15 @@ public class Function3
     }
 
     [Function("Function3a")]
-    public string Runa([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+    public HttpResponseData Runa([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
     {
-        _logger.LogWarning("Also works!");
-
-        return "Bye!";
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.WriteString("Welcome to Azure Functions!");
+        return response;
     }
 
 }
 
-//add Runb, jsonResult, person record
-//add IOptions ExampleConfig
+
+
 //add Runc, Multi output HttpResponseData /  [BlobOutput("function3c/multioutput.txt")]
