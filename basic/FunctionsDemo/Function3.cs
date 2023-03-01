@@ -14,7 +14,7 @@ public class Function3
         _logger = logger;
     }
 
-    [Function("Function3a")]
+    [Function("Function3")]
     public HttpResponseData Runa([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
     {
         var response = req.CreateResponse(HttpStatusCode.OK);
@@ -26,4 +26,4 @@ public class Function3
 
 
 
-//add Runc, Multi output HttpResponseData /  [BlobOutput("function3c/multioutput.txt")]
+//Multi output HttpResponseData /  [BlobOutput("function3/multioutput.txt")]
