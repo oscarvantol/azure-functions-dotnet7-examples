@@ -30,17 +30,16 @@ public class Function1
     public async Task MyOrchestration([OrchestrationTrigger] TaskOrchestrationContext context, string input)
     {
         _logger.LogInformation("-------------------(RE)STARTING Orchestration-----------------------");
-        string result = "";
-        result += await context.CallActivityAsync<string>(nameof(MyActivity1), "Something ");
-        result += await context.CallActivityAsync<string>(nameof(MyActivity1), "Works ");
-
+        
         //fan out
-        var task1 = context.CallActivityAsync<string>(nameof(MyActivity1), "Or ");
-        var task2 = context.CallActivityAsync<string>(nameof(MyActivity1), "Maybe ");
-        var task3 = context.CallActivityAsync<string>(nameof(MyActivity1), "Not ");
+        var task1 = context.CallActivityAsync<string>(nameof(MyActivity1), "You");
+        var task2 = context.CallActivityAsync<string>(nameof(MyActivity1), "are");
+        var task3 = context.CallActivityAsync<string>(nameof(MyActivity1), "an");
+        var task4 = context.CallActivityAsync<string>(nameof(MyActivity1), "awesome");
+        var task5 = context.CallActivityAsync<string>(nameof(MyActivity1), "crowd!");
 
-        var results = await Task.WhenAll(task1, task2, task3);
-        result += string.Join("", results);
+        var completedTasks = await Task.WhenAll(task1, task2, task3, task4, task5);
+        var result = string.Join(" ", completedTasks);
 
 
         _logger.LogWarning($"The result is: {result}");
